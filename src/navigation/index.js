@@ -1,15 +1,15 @@
-import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AuthNavigator from './AuthNavigator';
+import React from 'react';
+import { useAppSelector } from '../hooks/useRedux';
 import HomeScreen from '../screens/HomeScreen.jsx';
 import NoteCreateScreen from '../screens/NoteCreateScreen.jsx';
-import SettingsScreen from '../screens/SettingsScreen.jsx';
 import NoteDetailScreen from '../screens/NoteDetailScreen.jsx';
 import NotificationsScreen from '../screens/NotificationsScreen.jsx';
+import SettingsScreen from '../screens/SettingsScreen.jsx';
+import AuthNavigator from './AuthNavigator';
 import { ROUTES } from './routes';
-import { useAppSelector } from '../hooks/useRedux';
-import { Ionicons } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();

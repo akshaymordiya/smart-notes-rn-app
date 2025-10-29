@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Image, Keyboard, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, Keyboard, StyleSheet, View } from 'react-native';
 import { useAppTheme } from '../../theme/ThemeProvider';
+import Fade from '../animations/Fade';
+import Translate from '../animations/Translate';
 import { ThemedText } from './Themed';
 
-const getStyles = (theme, fade, translate, keyboardVisible) =>
+const getStyles = (theme, keyboardVisible, leftToRightAnimation) =>
   StyleSheet.create({
     view: {
-      opacity: fade,
-      transform: [{ translateY: translate }],
       backgroundColor: theme.cardColors.black.background,
       padding: theme.spacing.xl,
-      borderBottomLeftRadius: theme.radii['3xl'],
+      [leftToRightAnimation ? 'borderBottomRightRadius' : 'borderBottomLeftRadius']: theme.radii['3xl'],
       shadowColor: theme.cardColors.black.border,
       shadowOpacity: 0.4,
       shadowOffset: { width: 0, height: 12 },
@@ -25,37 +25,23 @@ const getStyles = (theme, fade, translate, keyboardVisible) =>
       paddingVertical: theme.spacing.xl,
       position: 'relative',
     },
+    fade: {
+      width: '100%'
+    },
     imageView: {
       width: "100%",
       height: 100,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: theme.spacing.xxl,
+      marginBottom: theme.spacing.xxl
     }
   });
 
-export default function AnimatedHeader({ title, subtitle }) {
-  const fade = useRef(new Animated.Value(0)).current;
-  const translate = useRef(new Animated.Value(12)).current;
+export default function AnimatedHeader({ title, subtitle, leftToRightAnimation = false }) {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
   const theme = useAppTheme();
-  const styles = getStyles(theme, fade, translate, keyboardVisible);
-
-  useEffect(() => {
-    Animated.parallel([
-      Animated.timing(fade, {
-        toValue: 1,
-        duration: 450,
-        useNativeDriver: true,
-      }),
-      Animated.timing(translate, {
-        toValue: 0,
-        duration: 450,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  }, [fade, translate]);
+  const styles = getStyles(theme, keyboardVisible, leftToRightAnimation);
 
   useEffect(() => {
     const show = Keyboard.addListener('keyboardDidShow', () => {
@@ -73,34 +59,38 @@ export default function AnimatedHeader({ title, subtitle }) {
   }, []);
 
   return (
-    <Animated.View
+    <View
       style={styles.view}
     >
-      <Image
-        source={require('../../assets/images/auth.png')}
-        resizeMode="contain"
-        style={styles.imageView}
-      />
-      <ThemedText
-        style={{
-          fontSize: theme.typography.h1,
-          color: theme.cardColors.black.text,
-          fontWeight: 'bold',
-        }}
-      >
-        {title}
-      </ThemedText>
-      {subtitle ? (
+      <Fade style={styles.fade}>
+        <Image
+          source={require('../../assets/images/auth.png')}
+          resizeMode="contain"
+          style={styles.imageView}
+        />
+      </Fade>
+      <Translate axis="x" initialValue={leftToRightAnimation ? -36 : 36} toValue={0} duration={450} >
         <ThemedText
-          muted
           style={{
-            fontSize: theme.typography.subheading,
-            color: theme.cardColors.black.textMuted,
+            fontSize: theme.typography.h1,
+            color: theme.cardColors.black.text,
+            fontWeight: 'bold',
           }}
         >
-          {subtitle}
+          {title}
         </ThemedText>
-      ) : null}
-    </Animated.View>
+        {subtitle ? (
+          <ThemedText
+            muted
+            style={{
+              fontSize: theme.typography.subheading,
+              color: theme.cardColors.black.textMuted,
+            }}
+          >
+            {subtitle}
+          </ThemedText>
+        ) : null}
+      </Translate>
+    </View>
   );
 }
