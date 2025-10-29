@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Smart Notes",
+    "slug": "smart-notes-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "newArchEnabled": true,
+    "scheme": "smartnotes",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0F1115"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.smartnotesapp"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0F1115"
+      },
+      "package": "com.anonymous.smartnotesapp"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

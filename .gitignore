@@ -1,0 +1,88 @@
+# --- General OS/Editor junk ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.orig
+*.tmp
+*.temp
+
+# Editor/IDE settings
+.vscode/
+.idea/
+*.iml
+*.code-workspace
+.sublime-*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files / secrets
+.env
+.env.*
+*.local
+
+# Node modules
+node_modules/
+
+# Jest / Coverage / Misc caches
+coverage/
+.jest/
+.expo/
+.expo-shared/
+
+# Expo web builds
+web-build/
+dist/
+
+# React Native - iOS
+ios/build/
+ios/DerivedData/
+ios/Pods/
+ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+ios/*.xcworkspace/xcuserdata/
+ios/.DS_Store
+*.hmap
+*.ipa
+*.app
+*.dSYM
+*.xcuserstate
+
+# React Native - Android
+android/.gradle/
+android/.idea/
+android/.settings/
+android/local.properties
+android/build/
+android/app/build/
+android/app/.cxx/
+android/app/intermediates/
+android/**/*.iml
+
+# Android keystores (do NOT commit release keystores)
+android/app/*.keystore
+android/app/*.jks
+android/app/debug.keystore
+
+# Buck / Watchman
+buck-out/
+.buckd/
+.watchman-cookie*
+
+# EAS / Expo artifacts
+*.tar.gz
+*.apk
+*.aab
+*.ipa
+
+# Metro cache (sometimes created in project)
+.metro-cache/
+
+# Misc
+.tmp/
+tmp/
