@@ -19,14 +19,15 @@ const getStyles = (theme) =>
   StyleSheet.create({
     btn: {
       marginTop: theme.spacing.xs,
+      fontFamily: 'Lato_700Bold',
     },
     forgotPasswordCta: {
       color: theme.colors.accent,
-      fontWeight: '800',
       marginTop: theme.spacing.lg,
+      fontFamily: 'Lato_700Bold',
     },
     signInCta: { marginVertical: theme.spacing.xl, alignSelf: 'center' },
-    signInCtaText: { color: theme.colors.accent, fontWeight: '800' }
+    signInCtaText: { color: theme.colors.accent, fontFamily: 'Lato_700Bold' }
   });
 
 export default function SignInScreen({ navigation }) {
@@ -43,10 +44,13 @@ export default function SignInScreen({ navigation }) {
     > 
       <Translate axis="y" initialValue={36} toValue={0} duration={450}>
         <Input
-          label="Email"
+          label="Email Address"
           value={email}
           onChangeText={setEmail}
           placeholder="you@example.com"
+          inputProps={{
+            textContentType:'emailAddress'
+          }}
         />
         <Input
           label="Password"
@@ -54,6 +58,7 @@ export default function SignInScreen({ navigation }) {
           onChangeText={setPassword}
           placeholder="••••••••"
           secureTextEntry
+          showPasswordToggle
         />
         <Button
           title="Sign In"

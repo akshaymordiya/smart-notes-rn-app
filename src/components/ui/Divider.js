@@ -18,9 +18,9 @@ const getStyles = (theme) =>
       backgroundColor: theme.colors.border,
     },
     centerText: {
-      marginHorizontal: theme.spacing.md,
+      marginHorizontal: theme.spacing.xl,
       color: theme.colors.textPlaceholder,
-      fontSize: theme.typography.subheading,
+      fontSize: theme.typography.caption,
       fontWeight: '500',
     },
   });

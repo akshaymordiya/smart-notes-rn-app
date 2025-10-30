@@ -74,7 +74,7 @@ export default function AnimatedHeader({ title, subtitle, leftToRightAnimation =
           style={{
             fontSize: theme.typography.h1,
             color: theme.cardColors.black.text,
-            fontWeight: 'bold',
+            fontFamily: 'Lato_900Black',
           }}
         >
           {title}
@@ -85,6 +85,9 @@ export default function AnimatedHeader({ title, subtitle, leftToRightAnimation =
             style={{
               fontSize: theme.typography.subheading,
               color: theme.cardColors.black.textMuted,
+              fontFamily: 'Lato_400Regular',
+              marginTop: theme.spacing.xs,
+              marginLeft: theme.spacing.xs,
             }}
           >
             {subtitle}

@@ -1,28 +1,29 @@
-import React, { useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import {
-  NavigationContainer,
-  DefaultTheme,
+  Lato_100Thin,
+  Lato_300Light,
+  Lato_400Regular,
+  Lato_700Bold,
+  Lato_900Black,
+  useFonts as useLatoFonts,
+} from '@expo-google-fonts/lato';
+import {
   DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
 } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
+import React, { useEffect } from 'react';
+import { setCustomText, setCustomTextInput } from 'react-native-global-props';
 import { Provider } from 'react-redux';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components/native';
-import {
-  useFonts as useInterFonts,
-  Inter_400Regular,
-  Inter_500Medium,
-  Inter_600SemiBold,
-  Inter_700Bold,
-} from '@expo-google-fonts/inter';
-import { setCustomText, setCustomTextInput } from 'react-native-global-props';
 import { store } from './app/store';
+import { USE_MOCKS } from './config';
+import { startMock } from './mocks/mockServer';
+import { startMockRealtime } from './mocks/realtime';
 import { AppNavigator } from './navigation';
 import { darkTheme } from './theme/dark';
 import { lightTheme } from './theme/light';
 import { ThemeProvider, useThemeMode } from './theme/ThemeProvider';
-import { startMock } from './mocks/mockServer';
-import { USE_MOCKS } from './config';
-import { startMockRealtime } from './mocks/realtime';
 
 function Root() {
   const { mode } = useThemeMode();
@@ -46,17 +47,18 @@ function Root() {
 }
 
 export default function App() {
-  const [fontsLoaded] = useInterFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
+  const [fontsLoaded] = useLatoFonts({
+    Lato_100Thin,
+    Lato_300Light,
+    Lato_400Regular,
+    Lato_700Bold,
+    Lato_900Black,
   });
 
   useEffect(() => {
     if (fontsLoaded) {
-      setCustomText({ style: { fontFamily: 'Inter_400Regular' } });
-      setCustomTextInput({ style: { fontFamily: 'Inter_400Regular' } });
+      setCustomText({ style: { fontFamily: 'Lato_400Regular' } });
+      setCustomTextInput({ style: { fontFamily: 'Lato_400Regular' } });
     }
   }, [fontsLoaded]);
 
