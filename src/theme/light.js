@@ -1,7 +1,7 @@
 export const lightTheme = {
   mode: 'light',
   colors: {
-    border: '#D7D7D7',
+    border: '#9BB4C0',
     background: '#F5F7F8',
     surface: '#F7F8FA',
     card: '#FFFFFF',
@@ -14,16 +14,28 @@ export const lightTheme = {
     accentMuted: '#6F4DFF',
     success: '#34D399',
     warning: '#F59E0B',
+    error: '#FF0000',
     mutedBg: '#F7F8FA',
     shadow: 'rgba(0,0,0,0.1)',
   },
-  cardColors: {
-    black: {
-      background: '#0F0E0E',
-      text: '#FFFFFF',
-      textMuted: '#929AAB',
-      border: '#242832',
+  card: {
+    colors: {
+      black: {
+        background: '#0F0E0E',
+        text: '#FFFFFF',
+        textMuted: '#929AAB',
+        border: '#242832',
+      },
+      sky: {
+        background: '#2973B2',
+        text: '#FFFFFF',
+        textMuted: '#92b5d7',
+        border: '#242832',
+      },
     },
+  },
+  gradients: {
+    splash: ['#2871B0', '#D4E4FF'],
   },
   spacing: { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32, xxxl: 40 },
   radii: { sm: 8, md: 12, lg: 20, xl: 28, '2xl': 36, '3xl': 42 },

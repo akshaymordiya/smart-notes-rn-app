@@ -1,17 +1,23 @@
-import React from "react";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
-import AnimatedHeader from "../../components/ui/AnimatedHeader";
-import { ThemedView } from "../../components/ui/Themed";
-import { useAppTheme } from "../../theme/ThemeProvider";
+import React from 'react';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
+import AnimatedHeader from '../../components/ui/AnimatedHeader';
+import { ThemedView } from '../../components/ui/Themed';
+import { useAppTheme } from '../../theme/ThemeProvider';
 
 const getStyles = (theme, leftToRightAnimation) =>
   StyleSheet.create({
     view: {
-      flex: 1
+      flex: 1,
     },
     contentContainer: {
       padding: 0,
-      flexGrow: 1
+      flexGrow: 1,
     },
     formContainer: {
       display: 'flex',
@@ -22,21 +28,25 @@ const getStyles = (theme, leftToRightAnimation) =>
       paddingHorizontal: theme.spacing.xl,
       paddingVertical: theme.spacing.xl,
       position: 'relative',
-      backgroundColor: theme.cardColors.black.background,
-      paddingBottom: 0
+      backgroundColor: theme.colors.background,
+      paddingBottom: 0,
+      // paddingTop: 30,
+      // [leftToRightAnimation ? 'borderTopLeftRadius' : 'borderTopRightRadius']: theme.radii['3xl'],
     },
     formBackground: {
-      backgroundColor: theme.colors.background,
+      backgroundColor: 'transparent',
       position: 'absolute',
-      top: 0,
+      width: '130%',
+      height: '100%',
+      top: -100,
       left: 0,
       right: 0,
       bottom: 0,
-      [leftToRightAnimation ? 'borderTopLeftRadius' : 'borderTopRightRadius']: theme.radii['3xl'],
     },
+    gradient: StyleSheet.absoluteFillObject,
   });
 
-export default function AuthLayout({ 
+export default function AuthLayout({
   children,
   title,
   subtitle,

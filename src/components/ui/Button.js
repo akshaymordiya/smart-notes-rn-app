@@ -50,7 +50,7 @@ export default function Button({
       style={[styles.base, style]}
     >
       {loading ? (
-        <ActivityIndicator color={theme.cardColors.black.text} />
+        <ActivityIndicator color={theme.card.colors.black.text} />
       ) : (
         <>
           {svgIcon && (

@@ -12,7 +12,7 @@ const getStyles = (theme) =>
       justifyContent: 'center',
       gap: theme.spacing.md,
       flexWrap: 'wrap',
-      width: '100%'
+      width: '100%',
     },
     googleBtn: {
       flex: 1,

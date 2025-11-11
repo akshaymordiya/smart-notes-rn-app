@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Translate from '../../components/animations/Translate';
 import Button from '../../components/ui/Button';
 import Divider from '../../components/ui/Divider';
@@ -27,7 +23,7 @@ const getStyles = (theme) =>
       fontFamily: 'Lato_700Bold',
     },
     signInCta: { marginVertical: theme.spacing.xl, alignSelf: 'center' },
-    signInCtaText: { color: theme.colors.accent, fontFamily: 'Lato_700Bold' }
+    signInCtaText: { color: theme.colors.accent, fontFamily: 'Lato_700Bold' },
   });
 
 export default function SignInScreen({ navigation }) {
@@ -38,20 +34,19 @@ export default function SignInScreen({ navigation }) {
   const [password, setPassword] = useState('');
 
   return (
-    <AuthLayout
-      title="Welcome Back"
-      subtitle="Sign in to your account"
-    > 
-      <Translate axis="y" initialValue={36} toValue={0} duration={450}>
+    <AuthLayout title="Welcome Back" subtitle="Sign in to your account">
+      <Translate axis="y" initialValue={36} toValue={0} duration={250}>
         <Input
           label="Email Address"
           value={email}
           onChangeText={setEmail}
           placeholder="you@example.com"
           inputProps={{
-            textContentType:'emailAddress'
+            textContentType: 'emailAddress',
           }}
         />
+      </Translate>
+      <Translate axis="y" initialValue={36} toValue={0} duration={450}>
         <Input
           label="Password"
           value={password}
@@ -60,6 +55,8 @@ export default function SignInScreen({ navigation }) {
           secureTextEntry
           showPasswordToggle
         />
+      </Translate>
+      <Translate axis="y" initialValue={36} toValue={0} duration={650}>
         <Button
           title="Sign In"
           onPress={() => signIn(email, password)}
@@ -73,6 +70,8 @@ export default function SignInScreen({ navigation }) {
             Forgot password?
           </ThemedText>
         </TouchableOpacity>
+      </Translate>
+      <Translate axis="y" initialValue={36} toValue={0} duration={850}>
         <Divider />
         <SocialAuth />
         <TouchableOpacity

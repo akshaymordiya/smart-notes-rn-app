@@ -5,7 +5,7 @@ const getStyles = (fade) =>
   StyleSheet.create({
     fade: {
       opacity: fade,
-    }
+    },
   });
 
 export default function Fade({ children, duration = 950, style }) {
@@ -20,9 +20,5 @@ export default function Fade({ children, duration = 950, style }) {
     }).start();
   }, [fade, duration]);
 
-  return (
-    <Animated.View style={[styles.fade, style]}>
-      {children}
-    </Animated.View>
-  );
+  return <Animated.View style={[styles.fade, style]}>{children}</Animated.View>;
 }

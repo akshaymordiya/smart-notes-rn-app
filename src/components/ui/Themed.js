@@ -30,10 +30,5 @@ export function ThemedText({ style, muted, ...props }) {
   else if (isBlack) fontFamily = theme.typography.fontFamilyBlack;
   else if (isBold) fontFamily = theme.typography.fontFamilyBold;
 
-  return (
-    <Text
-      style={[{ color, fontFamily }, style]}
-      {...props}
-    />
-  );
+  return <Text style={[{ color, fontFamily }, style]} {...props} />;
 }

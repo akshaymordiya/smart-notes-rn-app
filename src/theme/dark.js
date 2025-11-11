@@ -14,15 +14,24 @@ export const darkTheme = {
     accentMuted: '#6F4DFF',
     success: '#34D399',
     warning: '#F59E0B',
+    error: '#FF0000',
     mutedBg: '#0B0C0F',
     shadow: 'rgba(0,0,0,0.5)',
   },
-  cardColors: {
-    black: {
-      background: '#121319',
-      text: '#FFFFFF',
-      textMuted: '#B9C0CC',
-      border: '#242832',
+  card: {
+    colors: {
+      black: {
+        background: '#121319',
+        text: '#FFFFFF',
+        textMuted: '#B9C0CC',
+        border: '#242832',
+      },
+      sky: {
+        background: '#0693e3',
+        text: '#FFFFFF',
+        textMuted: '#929AAB',
+        border: '#242832',
+      },
     },
   },
   spacing: { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32, xxxl: 40 },
