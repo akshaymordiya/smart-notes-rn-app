@@ -68,6 +68,7 @@ export default function Input({
   rightEndIcon = null,
   inputProps = {},
   style,
+  error = null,
 }) {
   const theme = useAppTheme();
   const [isFocused, setIsFocused] = useState(false);
@@ -120,7 +121,9 @@ export default function Input({
           )}
         </View>
       </View>
-      <Text style={styles.errorText}>Error message</Text>
+      {error && (
+        <Text style={styles.errorText}>{error}</Text>
+      )}
     </View>
   );
 }
