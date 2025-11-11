@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useAppTheme } from '../../theme/ThemeProvider';
 
 export default function OtpInput({
   numDigits = 4,
@@ -9,6 +10,7 @@ export default function OtpInput({
   resend,
 }) {
   const inputs = Array.from({ length: numDigits });
+  const theme = useAppTheme();
   const refs = useRef([]);
   const [timer, setTimer] = useState(60);
 
@@ -50,10 +52,9 @@ export default function OtpInput({
               height: 56,
               marginHorizontal: 6,
               textAlign: 'center',
-              color: '#E6EDF3',
-              backgroundColor: '#121319',
+              color: theme.colors.textPrimary,
               borderWidth: 1,
-              borderColor: '#242832',
+              borderColor: theme.colors.border,
               borderRadius: 12,
               fontSize: 20,
             }}
