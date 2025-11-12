@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
+import { DEFAULT_THEME } from '../config';
 import { darkTheme } from './dark';
 import { lightTheme } from './light';
-import { DEFAULT_THEME } from '../config';
 const Ctx = createContext({ mode: 'dark', toggle: () => {} });
 
 export function ThemeProvider({ children }) {

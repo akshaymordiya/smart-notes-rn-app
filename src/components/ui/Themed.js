@@ -14,7 +14,7 @@ export function ThemedView({ style, ...props }) {
 
 export function ThemedText({ style, muted, ...props }) {
   const theme = useAppTheme();
-  const color = muted ? theme.colors.textMuted : theme.colors.textPrimary;
+  const color = muted ? theme.colors.text.muted : theme.colors.text.primary;
   const flattened = StyleSheet.flatten(style) || {};
 
   // Map fontWeight to the correct Lato variant so consumers can use fontWeight

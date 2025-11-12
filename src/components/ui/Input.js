@@ -23,18 +23,18 @@ const getStyles = (theme) =>
       backgroundColor: 'transparent',
     },
     containerFocused: {
-      borderColor: theme.colors.accent,
+      borderColor: theme.mode !== 'dark' ? theme.colors.primary : theme.colors.accent,
       borderWidth: 1.2,
       boxShadow:
         'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
     },
     label: {
-      color: theme.colors.textMuted,
+      color: theme.colors.text.muted,
       marginBottom: 4,
       fontSize: 10,
     },
     labelFocuses: {
-      color: theme.colors.textPlaceholder,
+      color: theme.colors.text.placeholder,
     },
     inputContainer: {
       flexDirection: 'row',
@@ -44,7 +44,7 @@ const getStyles = (theme) =>
     input: {
       flex: 1,
       backgroundColor: 'transparent',
-      color: theme.colors.textPrimary,
+      color: theme.colors.text.primary,
       borderRadius: theme.radii.md,
       fontSize: 14,
     },
@@ -99,7 +99,7 @@ export default function Input({
             value={value}
             onChangeText={onChangeText}
             placeholder={placeholder}
-            placeholderTextColor={theme.colors.textPlaceholder}
+            placeholderTextColor={theme.colors.text.placeholder}
             secureTextEntry={showPassword}
             {...inputProps}
             style={styles.input}
@@ -112,7 +112,7 @@ export default function Input({
               <FontAwesome6
                 name={showPassword ? 'eye' : 'eye-slash'}
                 size={16}
-                color={theme.colors.textMuted}
+                color={theme.colors.text.muted}
               />
             </TouchableOpacity>
           )}

@@ -16,14 +16,17 @@ const textBySteps = {
   [steps.email]: {
     title: 'Reset password',
     subtitle: 'We\'ll send a code to your email.',
+    heroImage: "forgotPassword",
   },
   [steps.otp]: {
     title: 'Enter code',
     subtitle: 'We sent it to your email.',
+    heroImage: "otpVerify",
   },
   [steps.reset]: {
     title: 'Set new password',
     subtitle: 'Enter your new password.',
+    heroImage: "resetPassword",
   },
 }
 
@@ -67,7 +70,11 @@ export default function ForgotPasswordScreen({ navigation }) {
   };
 
   return (
-    <AuthLayout title={textBySteps[step].title} subtitle={textBySteps[step].subtitle}>
+    <AuthLayout 
+      title={textBySteps[step].title} 
+      subtitle={textBySteps[step].subtitle}
+      heroImage={textBySteps[step].heroImage}
+    >
       <View
       >
         {step === steps.email && (

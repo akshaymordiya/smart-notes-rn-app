@@ -18,12 +18,12 @@ const getStyles = (theme) =>
       fontFamily: 'Lato_700Bold',
     },
     forgotPasswordCta: {
-      color: theme.colors.accent,
+      color: theme.mode !== 'dark' ? theme.colors.primary : theme.colors.accent,
       marginTop: theme.spacing.lg,
       fontFamily: 'Lato_700Bold',
     },
     signInCta: { marginVertical: theme.spacing.xl, alignSelf: 'center' },
-    signInCtaText: { color: theme.colors.accent, fontFamily: 'Lato_700Bold' },
+    signInCtaText: { color: theme.mode !== 'dark' ? theme.colors.primary : theme.colors.accent, fontFamily: 'Lato_700Bold' },
   });
 
 export default function SignInScreen({ navigation }) {
@@ -34,7 +34,7 @@ export default function SignInScreen({ navigation }) {
   const [password, setPassword] = useState('');
 
   return (
-    <AuthLayout title="Welcome Back" subtitle="Sign in to your account">
+    <AuthLayout title="Welcome Back" subtitle="Sign in to your account" heroImage={"signIn"}>
       <Translate axis="y" initialValue={36} toValue={0} duration={250}>
         <Input
           label="Email Address"

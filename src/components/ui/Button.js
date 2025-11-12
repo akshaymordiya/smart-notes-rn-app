@@ -18,7 +18,7 @@ const getStyles = (theme, variant) =>
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor:
-        variant === 'primary' ? theme.colors.buttonPrimary : 'transparent',
+        variant === 'primary' ? theme.colors.primary : 'transparent',
       borderWidth: variant === 'ghost' ? 1 : 0,
       borderColor: '#242832',
       display: 'flex',
@@ -50,7 +50,7 @@ export default function Button({
       style={[styles.base, style]}
     >
       {loading ? (
-        <ActivityIndicator color={theme.card.colors.black.text} />
+        <ActivityIndicator color={theme.colors.primary} />
       ) : (
         <>
           {svgIcon && (

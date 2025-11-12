@@ -10,7 +10,7 @@ import AnimatedHeader from '../../components/ui/AnimatedHeader';
 import { ThemedView } from '../../components/ui/Themed';
 import { useAppTheme } from '../../theme/ThemeProvider';
 
-const getStyles = (theme, leftToRightAnimation) =>
+const getStyles = (theme) =>
   StyleSheet.create({
     view: {
       flex: 1,
@@ -30,8 +30,6 @@ const getStyles = (theme, leftToRightAnimation) =>
       position: 'relative',
       backgroundColor: theme.colors.background,
       paddingBottom: 0,
-      // paddingTop: 30,
-      // [leftToRightAnimation ? 'borderTopLeftRadius' : 'borderTopRightRadius']: theme.radii['3xl'],
     },
     formBackground: {
       backgroundColor: 'transparent',
@@ -50,10 +48,12 @@ export default function AuthLayout({
   children,
   title,
   subtitle,
-  leftToRightAnimation = false,
+  heroImage = null,
+  heroImageContainerStyle = {},
+  heroImageStyle = {},
 }) {
   const theme = useAppTheme();
-  const styles = getStyles(theme, leftToRightAnimation);
+  const styles = getStyles(theme);
   return (
     <ThemedView style={styles.view}>
       <KeyboardAvoidingView
@@ -69,7 +69,9 @@ export default function AuthLayout({
           <AnimatedHeader
             title={title}
             subtitle={subtitle}
-            leftToRightAnimation={leftToRightAnimation}
+            heroImage={heroImage}
+            heroImageContainerStyle={heroImageContainerStyle}
+            heroImageStyle={heroImageStyle}
           />
           <View style={styles.formContainer}>
             <View style={styles.formBackground}></View>

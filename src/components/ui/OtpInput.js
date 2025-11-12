@@ -52,7 +52,7 @@ export default function OtpInput({
               height: 56,
               marginHorizontal: 6,
               textAlign: 'center',
-              color: theme.colors.textPrimary,
+              color: theme.colors.text.primary,
               borderWidth: 1,
               borderColor: theme.colors.border,
               borderRadius: 12,
@@ -65,9 +65,9 @@ export default function OtpInput({
         <TouchableOpacity
           disabled={timer > 0}
           onPress={resend.onResend}
-          style={{ marginTop: 12 }}
+          style={{ marginTop: 28 }}
         >
-          <Text style={{ color: timer > 0 ? '#9AA4B2' : '#7C5CFF' }}>
+          <Text style={{ color: timer > 0 ? theme.colors.text.placeholder : theme.colors.accent, fontFamily: 'Lato_700Bold' }}>
             {timer > 0
               ? `Resend in 00:${String(timer).padStart(2, '0')}`
               : 'Resend code'}

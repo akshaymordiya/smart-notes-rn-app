@@ -14,7 +14,7 @@ import SocialAuth from './SocialAuth';
 const getStyles = (theme) =>
   StyleSheet.create({
     signUpCta: { marginVertical: theme.spacing.xl, alignSelf: 'center' },
-    signUpCtaText: { color: theme.colors.accent, fontWeight: '800' },
+    signUpCtaText: { color: theme.mode !== 'dark' ? theme.colors.primary : theme.colors.accent, fontWeight: '800' },
   });
 
 export default function SignUpScreen({ navigation }) {
@@ -30,7 +30,7 @@ export default function SignUpScreen({ navigation }) {
     <AuthLayout
       title="Register Now"
       subtitle="Create an account to get started"
-      leftToRightAnimation={true}
+      heroImage={"signUp"}
     >
       <Translate axis="y" initialValue={36} toValue={0} duration={250}>
         <Input

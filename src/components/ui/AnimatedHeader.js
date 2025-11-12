@@ -1,24 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { Image, Keyboard, StyleSheet, View } from 'react-native';
+import React from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 import { useAppTheme } from '../../theme/ThemeProvider';
 import Fade from '../animations/Fade';
 import Translate from '../animations/Translate';
 import { ThemedText } from './Themed';
 
-const getStyles = (theme, keyboardVisible, leftToRightAnimation) =>
+// Static map so Metro can statically analyze asset requires.
+const HERO_IMAGES = {
+  dark: {
+    signIn: require('../../assets/images/dark/sign-in.png'),
+    wave: require('../../assets/images/dark/wave.png'),
+    signUp: require('../../assets/images/dark/sign-up.png'),
+    forgotPassword: require('../../assets/images/dark/fp.png'),
+    otpVerify: require('../../assets/images/dark/otp.png'),
+    resetPassword: require('../../assets/images/dark/rp.png'),
+    login: require('../../assets/images/dark/login.png'),
+  },
+  light: {
+    signIn: require('../../assets/images/light/sign-in.png'),
+    wave: require('../../assets/images/light/wave.png'),
+    signUp: require('../../assets/images/light/sign-up.png'),
+    forgotPassword: require('../../assets/images/light/fp.png'),
+    otpVerify: require('../../assets/images/light/otp.png'),
+    resetPassword: require('../../assets/images/light/rp.png'),
+    login: require('../../assets/images/light/login.png'),
+  },
+};
+
+const getStyles = (theme) =>
   StyleSheet.create({
     view: {
-      // backgroundColor: theme.card.colors.black.background,
-      // padding: theme.spacing.xl,
-      // [leftToRightAnimation
-      //   ? 'borderBottomRightRadius'
-      //   : 'borderBottomLeftRadius']: theme.radii['3xl'],
-      shadowColor: theme.card.colors.black.border,
-      shadowOpacity: 0.4,
-      shadowOffset: { width: 0, height: 12 },
-      shadowRadius: 24,
-      // minHeight: keyboardVisible ? 150 : 100,
-      // flexGrow: 1,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
@@ -27,64 +38,74 @@ const getStyles = (theme, keyboardVisible, leftToRightAnimation) =>
       paddingTop: 60,
       position: 'relative',
       textAlign: 'center',
-      // borderWidth: 1,
-      // borderColor: 'red',
-      backgroundColor: theme.card.colors.sky.background,
+      backgroundColor: theme.colors.primary,
+    },
+    imageContainer: {
+      borderRadius: '50%',
+      width: 160,
+      height: 160,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginBottom: theme.spacing.lg,
     },
     fade: {
       width: '100%',
     },
     imageView: {
-      width: '100%',
-      height: 100,
+      width: '105%',
+      height: '105%',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: theme.spacing.xxl,
+      filter: 'drop-shadow(3px 2px 0px #7daccc)',
     },
   });
 
 export default function AnimatedHeader({
   title,
   subtitle,
-  leftToRightAnimation = false,
+  heroImage = null,
+  heroImageContainerStyle = {},
+  heroImageStyle = {},
 }) {
-  const [keyboardVisible, setKeyboardVisible] = useState(false);
   const theme = useAppTheme();
-  const styles = getStyles(theme, keyboardVisible, leftToRightAnimation);
+  const styles = getStyles(theme);
 
-  useEffect(() => {
-    const show = Keyboard.addListener('keyboardDidShow', () => {
-      setKeyboardVisible(true);
-    });
-
-    const hide = Keyboard.addListener('keyboardDidHide', () => {
-      setKeyboardVisible(false);
-    });
-
-    return () => {
-      show.remove();
-      hide.remove();
-    };
-  }, []);
+  let imageSource = null;
+  if (heroImage) {
+    if (typeof heroImage === 'string') {
+      imageSource = HERO_IMAGES[theme.mode][heroImage] || null;
+    } else {
+      imageSource = heroImage;
+    }
+  }
 
   return (
     <View>
       <View style={styles.view}>
-        <Fade style={styles.fade}>
-          <Image
-            source={require('../../assets/images/auth.png')}
-            resizeMode="contain"
-            style={styles.imageView}
-          />
-        </Fade>
+        {imageSource ? (
+          <Fade style={styles.fade}>
+            <View style={[styles.imageContainer, heroImageContainerStyle]}>
+              <Image
+                source={imageSource}
+                resizeMode="contain"
+                style={[styles.imageView, heroImageStyle]}
+              />
+            </View>
+          </Fade>
+        ) : null}
         <Translate axis="y" initialValue={24} toValue={0} duration={450}>
           <ThemedText
             style={{
               fontSize: theme.typography.h1,
-              color: theme.card.colors.sky.text,
+              color: theme.colors.text.white,
               fontFamily: 'Lato_900Black',
               textAlign: 'center',
+              textShadow: '1px 1px 2px pink',
+              marginTop: 12,
             }}
           >
             {title}
@@ -94,9 +115,9 @@ export default function AnimatedHeader({
               muted
               style={{
                 fontSize: theme.typography.subheading,
-                color: theme.card.colors.sky.textMuted,
+                color: theme.colors.primaryMuted,
                 fontFamily: 'Lato_700Bold',
-                marginTop: theme.spacing.sm,
+                marginTop: 6,
                 marginLeft: theme.spacing.xs,
                 textAlign: 'center',
               }}
@@ -108,7 +129,7 @@ export default function AnimatedHeader({
       </View>
       <View style={{ height: 150, width: '100%' }}>
         <Image
-          source={require('../../assets/images/wave1.png')}
+          source={HERO_IMAGES[theme.mode].wave}
           resizeMode="cover"
           style={{ width: '100%', height: '100%' }}
         />

@@ -19,7 +19,7 @@ const getStyles = (theme) =>
     },
     centerText: {
       marginHorizontal: theme.spacing.xl,
-      color: theme.colors.textPlaceholder,
+      color: theme.colors.text.placeholder,
       fontSize: theme.typography.caption,
       fontWeight: '500',
     },
